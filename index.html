@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Name - Stories & Jokes</title>
+    <!-- Google Fonts for Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Reset & Global Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #08080c;
+            /* Background image with overlay gradient for enhanced visual depth */
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(120, 119, 198, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(79, 70, 229, 0.12) 0%, transparent 40%),
+                url('bg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #f3f4f6;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 200vh; /* Keeps page scrollable as requested */
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Modern Navigation Bar Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 24px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(8, 8, 12, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 1000;
+        }
+
+        .brand-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .brand-logo span {
+            background: linear-gradient(135deg, #a5b4fc 0%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-tag {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+        }
+
+        /* Hero Section Styling - Off-center Modern Layout */
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 220px 8% 100px 8%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Asymmetric landing page alignment */
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            font-size: 0.85rem;
+            color: #c7d2fe;
+            margin-bottom: 28px;
+            backdrop-filter: blur(8px);
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #6366f1;
+            box-shadow: 0 0 10px #6366f1;
+        }
+
+        /* Main Headline */
+        h1.hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            color: #ffffff;
+            max-width: 900px;
+            margin-bottom: 24px;
+        }
+
+        /* Subtle Gradient Glow Effect on Title Text */
+        h1.hero-title .gradient-text {
+            background: linear-gradient(135deg, #ffffff 30%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Subtitle / Description Text */
+        p.hero-description {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            color: rgba(243, 244, 246, 0.7);
+            max-width: 620px;
+            font-weight: 400;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        /* Top Banner Ad Space Placeholder */
+        .ad-placeholder {
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+            margin: 40px 0;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(4px);
+        }
+
+        /* Fixed "Support the Writer" Button Placeholder */
+        .support-tip-btn {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: #ffffff;
+            padding: 14px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .support-tip-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(79, 70, 229, 0.6);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation Bar -->
+    <header>
+        <div class="brand-logo">Website <span>Name</span></div>
+        <div class="nav-tag">Edition 1.0</div>
+    </header>
+
+    <!-- Main Hero Landing Container -->
+    <main class="hero-container">
+        
+        <div class="badge">
+            <span class="badge-dot"></span>
+            Curated Micro-Fiction & Daily Humor
+        </div>
+
+        <h1 class="hero-title">
+            Website <span class="gradient-text">Name</span>
+        </h1>
+
+        <p class="hero-description">
+            Step into a universe of captivating short stories, mind-bending tales, and quick daily laughs designed for modern readers on the move.
+        </p>
+
+        <!-- Top Display Ad Placeholder Slot -->
+        <!-- AD SPACE HERE -->
+        <div class="ad-placeholder">
+            <!-- AD SPACE HERE -->
+            [ ADVERTISER SPACE ]
+        </div>
+
+    </main>
+
+    <!-- Bottom Display Ad Placeholder Slot -->
+    <div style="max-width: 1200px; margin: 100px auto 40px auto; padding: 0 8%;">
+        <!-- AD SPACE HERE -->
+        <div class="ad-placeholder" style="margin: 0 auto;">
+            <!-- AD SPACE HERE -->
+            [ BOTTOM DISPLAY AD SPACE ]
+        </div>
+    </div>
+
+    <!-- Fixed Support the Writer Button -->
+    <button class="support-tip-btn" onclick="alert('Thank you for supporting our writers!')">
+        ☕ Support the Writer
+    </button>
+
+</body>
+</html>
