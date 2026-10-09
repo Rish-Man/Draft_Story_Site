@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verv - Stories & Jokes</title>
-
-    <!-- Google Fonts: Pacifico for Script typography & Plus Jakarta Sans for body text -->
+    <title>Verv | Stories & Jokes</title>
+    
+    <!-- 1. Import Pacifico Font from Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
     <style>
-        /* CSS Reset & Global Styling */
+        /* --- RESET & BASIC STYLES --- */
         * {
             margin: 0;
             padding: 0;
@@ -19,168 +19,135 @@
         }
 
         body {
-            background-color: #000000;
-            /* Direct background image without color tint filters */
-            background-image: url('bg.png'); /* Change to your exact file name if different */
+            /* 2. Background image is now set to bg.png */
+            background-image: url('bg.png'); 
+            
+            /* Make the background cover the whole screen and stay fixed */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            background-repeat: no-repeat;
+            background-color: #000; /* Fallback color if image fails */
+            
+            font-family: 'Poppins', sans-serif;
             color: #ffffff;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            min-height: 200vh; /* Keeps page scrollable */
-            line-height: 1.6;
-            overflow-x: hidden;
+            height: 100vh;
+            overflow-y: scroll; /* Allows scrolling */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* Modern Navigation Bar Header */
-        header {
-            position: fixed;
+        /* --- OVERLAY TO MAKE TEXT POP --- */
+        /* Adds a subtle dark gradient over the image so white text is always readable */
+        body::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 24px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            z-index: 1000;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+            z-index: -1; /* Puts the overlay behind the content */
         }
 
-        .brand-logo {
-            font-family: 'Pacifico', cursive;
-            font-size: 2rem;
-            color: #ffffff;
-        }
-
-        .nav-tag {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: rgba(255, 255, 255, 0.5);
-            font-weight: 600;
-        }
-
-        /* Hero Section Styling - Modern Layout */
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 220px 8% 100px 8%;
+        /* --- HERO SECTION (The main content) --- */
+        .hero {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            justify-content: center;
+            align-items: flex-start; /* Aligns text to the left, like modern sites */
+            min-height: 90vh; /* Takes up 90% of the screen height */
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px 40px;
+            /* Push content down slightly so it's not perfectly centered */
+            padding-top: 15vh; 
         }
 
-        /* Main Headline in Script Font */
-        h1.hero-title {
+        /* --- THE "VERV" TITLE --- */
+        .brand-title {
             font-family: 'Pacifico', cursive;
-            font-size: clamp(4.5rem, 12vw, 8.5rem);
-            font-weight: 400;
-            line-height: 1.1;
+            font-size: 6rem; /* Very large text */
             color: #ffffff;
             margin-bottom: 20px;
-            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 4px 15px rgba(0,0,0,0.6); /* Adds a glow/shadow */
+            letter-spacing: 2px;
+            line-height: 1.1;
         }
 
-        /* Subtitle / Description Text */
-        p.hero-description {
-            font-size: clamp(1.1rem, 2vw, 1.35rem);
-            color: rgba(255, 255, 255, 0.75);
-            max-width: 600px;
+        /* --- DESCRIPTION TEXT --- */
+        .description {
+            font-size: 1.2rem;
             font-weight: 300;
-            line-height: 1.7;
-            margin-bottom: 40px;
-        }
-
-        /* Top Banner Ad Space Placeholder */
-        .ad-placeholder {
-            width: 100%;
-            max-width: 728px;
-            height: 90px;
-            margin: 40px 0;
-            border: 1px dashed rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.85rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(6px);
-        }
-
-        /* Fixed "Support the Writer" Button Placeholder */
-        .support-tip-btn {
-            position: fixed;
-            bottom: 28px;
-            right: 28px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            padding: 14px 24px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            line-height: 1.6;
+            max-width: 600px; /* Prevents text from stretching too wide */
+            color: #e0e0e0;
+            
+            /* Glassmorphism Effect (Frosted glass look) */
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            cursor: pointer;
-            z-index: 999;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            -webkit-backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
 
-        .support-tip-btn:hover {
-            background: #ffffff;
-            color: #000000;
-            transform: translateY(-3px);
+        /* --- SCROLL INDICATOR --- */
+        /* Just a little visual cue that you can scroll down */
+        .scroll-indicator {
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #aaa;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0.8;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-5px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        /* --- RESPONSIVE DESIGN (For Phones) --- */
+        @media (max-width: 768px) {
+            .brand-title {
+                font-size: 4rem;
+            }
+            .description {
+                font-size: 1rem;
+                padding: 20px;
+            }
+            .hero {
+                align-items: center; /* Center on mobile */
+                text-align: center;
+                padding-top: 25vh;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Navigation Bar -->
-    <header>
-        <div class="brand-logo">Verv</div>
-        <div class="nav-tag">Edition 1.0</div>
-    </header>
-
-    <!-- Main Hero Landing Container -->
-    <main class="hero-container">
-
-        <h1 class="hero-title">Verv</h1>
-
-        <p class="hero-description">
-            Step into a universe of captivating short stories, mind-bending tales, and quick daily laughs designed for modern readers on the move.
-        </p>
-
-        <!-- Top Display Ad Placeholder Slot -->
-        <!-- AD SPACE HERE -->
-        <div class="ad-placeholder">
-            <!-- AD SPACE HERE -->
-            [ ADVERTISER SPACE ]
+    <!-- HERO SECTION -->
+    <main class="hero">
+        <h1 class="brand-title">Verv</h1>
+        
+        <div class="description">
+            <p>Welcome to Verv. Dive into a curated collection of captivating stories, quick-witted jokes, and creative writing. We bring you the best content to brighten your day and spark your imagination. Scroll down to explore.</p>
         </div>
 
+        <!-- Small visual cue to scroll -->
+        <div class="scroll-indicator">
+            <span>Scroll for more</span>
+            <span>↓</span>
+        </div>
     </main>
 
-    <!-- Bottom Display Ad Placeholder Slot -->
-    <div style="max-width: 1200px; margin: 100px auto 40px auto; padding: 0 8%;">
-        <!-- AD SPACE HERE -->
-        <div class="ad-placeholder" style="margin: 0 auto;">
-            <!-- AD SPACE HERE -->
-            [ BOTTOM DISPLAY AD SPACE ]
-        </div>
-    </div>
-
-    <!-- Fixed Support the Writer Button -->
-    <button class="support-tip-btn" onclick="alert('Thank you for supporting our writers!')">
-        ☕ Support the Writer
-    </button>
+    <!-- Empty space below to allow scrolling (for future buttons) -->
+    <div style="height: 50vh; width: 100%;"></div>
 
 </body>
 </html>
