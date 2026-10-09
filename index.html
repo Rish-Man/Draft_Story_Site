@@ -1,13 +1,15 @@
+---
+layout: null
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verv | Stories & Jokes</title>
-    <meta name="google-site-verification" content="m-zfy0nbuRGDcKCxdUMLrHj-u5M6yaBJhLM_JTv2WBQ" />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Added Josefin Sans to the font import -->
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600;800&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
 
     <style>
@@ -28,7 +30,6 @@
             transform: scale(1.05);
         }
 
-        /* --- BLUR TRANSITION OVERLAY --- */
         .blur-overlay {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background-color: #fcf6e8; z-index: 9999; opacity: 0;
@@ -36,7 +37,6 @@
         }
         .blur-overlay.active { opacity: 1; pointer-events: all; }
 
-        /* --- BACKGROUND LAYERS --- */
         .bg-wrapper {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: -2; background-image: url('bg.png');
@@ -47,7 +47,6 @@
             z-index: -1; background: linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, rgba(5,5,5,0.8) 60%, rgba(5,5,5,1) 100%);
         }
 
-        /* --- NAVBAR --- */
         nav {
             position: fixed; top: 0; width: 100%; padding: 15px 40px;
             display: flex; justify-content: space-between; align-items: center;
@@ -59,10 +58,9 @@
         .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s ease; }
         .nav-links a:hover { color: var(--text-main); }
 
-        /* --- HERO SECTION --- */
         .hero {
             min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
-            padding: 120px 40px 0 40px; /* <-- Added extra top padding */
+            padding: 120px 40px 0 40px;
             max-width: 1200px; margin: 0 auto;
         }
         .hero-content { max-width: 680px; }
@@ -72,7 +70,6 @@
             line-height: 1; margin-bottom: 20px; text-shadow: 0 4px 20px rgba(0,0,0,0.8);
         }
 
-        /* --- THE JOSEFIN SANS DESCRIPTION --- */
         .hero-description {
             font-family: 'Josefin Sans', sans-serif;
             font-weight: 300;
@@ -81,48 +78,33 @@
             color: #d1d1d1;
             margin-bottom: 25px;
         }
-
-        .hero-description p {
-            margin-bottom: 18px;
-        }
+        .hero-description p { margin-bottom: 18px; }
 
         .hero-description .opening {
-            font-weight: 600;
-            font-size: 1.4rem;
-            color: #ffffff;
-            margin-bottom: 22px;
-            line-height: 1.3;
+            font-weight: 600; font-size: 1.4rem;
+            color: #ffffff; margin-bottom: 22px; line-height: 1.3;
         }
 
         .dm-line {
-            font-weight: 400;
-            color: #ffffff;
+            font-weight: 400; color: #ffffff;
             background: rgba(255, 255, 255, 0.06);
             border-left: 3px solid #ffffff;
             padding: 14px 20px;
             border-radius: 0 8px 8px 0;
-            margin-top: 25px;
-            font-size: 1.05rem;
+            margin-top: 25px; font-size: 1.05rem;
         }
-
         .dm-line .handle {
-            font-weight: 600;
-            color: #ffffff;
-            text-decoration: underline;
-            text-underline-offset: 3px;
+            font-weight: 600; color: #ffffff;
+            text-decoration: underline; text-underline-offset: 3px;
             transition: opacity 0.3s ease;
         }
         .dm-line .handle:hover { opacity: 0.7; }
 
         .personal-note {
-            font-style: italic;
-            font-size: 0.95rem;
-            color: #999;
-            margin-top: 20px;
-            line-height: 1.6;
+            font-style: italic; font-size: 0.95rem;
+            color: #999; margin-top: 20px; line-height: 1.6;
         }
 
-        /* --- THE UNCOVER BUTTON --- */
         .uncover-btn {
             display: inline-flex; align-items: center; gap: 10px;
             padding: 16px 36px; font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
@@ -135,7 +117,63 @@
             background-color: #f0f0f0;
         }
 
-        /* --- CONTENT SECTION --- */
+        /* ============================================ */
+        /* JOKE OF THE DAY SECTION */
+        /* ============================================ */
+        .joke-of-day {
+            margin-top: 40px;
+            padding: 28px 32px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-left: 3px solid #ffffff;
+            border-radius: 0 12px 12px 0;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .joke-of-day .joke-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #999;
+            margin-bottom: 12px;
+        }
+
+        .joke-of-day .joke-setup {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #e0e0e0;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .joke-of-day .joke-punchline {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.5;
+        }
+
+        .joke-of-day .joke-invite {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 1.05rem;
+            color: #d1d1d1;
+            line-height: 1.6;
+        }
+
+        .joke-of-day .joke-invite a {
+            color: #ffffff;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+        }
+        .joke-of-day .joke-invite a:hover { opacity: 0.7; }
+
         .content-section { background: var(--bg-dark); padding: 80px 40px; position: relative; z-index: 10; }
         .section-title { font-size: 2rem; font-weight: 600; margin-bottom: 40px; max-width: 1200px; margin-left: auto; margin-right: auto; }
         .story-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
@@ -156,34 +194,32 @@
             .uncover-btn { width: 100%; justify-content: center; }
             .hero-description { font-size: 1.05rem; }
             .hero-description .opening { font-size: 1.25rem; }
+            .joke-of-day { padding: 22px 24px; }
+            .joke-of-day .joke-setup { font-size: 1rem; }
+            .joke-of-day .joke-punchline { font-size: 1.05rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- BLUR TRANSITION OVERLAY -->
     <div class="blur-overlay" id="blurOverlay"></div>
 
-    <!-- BACKGROUND LAYERS -->
     <div class="bg-wrapper"></div>
     <div class="bg-overlay"></div>
 
-    <!-- NAVBAR -->
     <nav>
         <a href="#" class="nav-logo">Verv</a>
         <div class="nav-links">
-            <a href="#">Stories</a>
-            <a href="#">Jokes</a>
-            <a href="#">About</a>
+            <a href="originals.html">Stories</a>
+            <a href="jokes.html">Jokes</a>
+            <a href="songs.html">Songs</a>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-content">
             <h1 class="brand-title">Verv</h1>
             
-            <!-- DESCRIPTION IN JOSEFIN SANS -->
             <div class="hero-description">
                 <p class="opening">Hey, you found Verv.</p>
                 
@@ -200,13 +236,32 @@
                 <p class="personal-note">No gatekeeping here. Oh btw, I am also not a great writer. It's just something I do for passing time.</p>
             </div>
 
+            <!-- ============================================ -->
+            <!-- JOKE OF THE DAY — auto-updates from CMS -->
+            <!-- ============================================ -->
+            {% assign today_date = site.time | date: "%Y-%m-%d" %}
+            {% assign today_jokes = site.jokes | where: "date", today_date %}
+            
+            <div class="joke-of-day">
+                <div class="joke-label">Joke of the Day</div>
+                {% if today_jokes.size > 0 %}
+                    {% assign today_joke = today_jokes | first %}
+                    <p class="joke-setup">{{ today_joke.setup }}</p>
+                    <p class="joke-punchline">{{ today_joke.punchline }}</p>
+                {% else %}
+                    <p class="joke-invite">
+                        Would you like to add one? DM me at 
+                        <a href="https://instagram.com/verv.reads" target="_blank">@verv.reads</a> — I'll feature the best ones here.
+                    </p>
+                {% endif %}
+            </div>
+
             <button class="uncover-btn" id="uncoverBtn">
                 Uncover More <span>→</span>
             </button>
         </div>
     </section>
 
-    <!-- CONTENT SECTION -->
     <section class="content-section">
         <h2 class="section-title">Latest Drops</h2>
         <div class="story-grid">
@@ -217,7 +272,6 @@
         </div>
     </section>
 
-    <!-- JAVASCRIPT FOR BLUR TRANSITION -->
     <script>
         document.getElementById('uncoverBtn').addEventListener('click', function(e) {
             e.preventDefault(); 
