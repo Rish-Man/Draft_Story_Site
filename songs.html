@@ -1,3 +1,6 @@
+---
+layout: null
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -139,18 +142,27 @@
         <h1 class="page-heading">Song Highlights</h1>
         <p class="page-subtitle">Songs I keep coming back to — and why they matter.</p>
 
-        <!-- ADD NEW SONG HIGHLIGHTS AT THE TOP -->
-
+        {% assign sorted_songs = site.songs | sort: "date" | reverse %}
+        {% for song in sorted_songs %}
         <div class="song">
-            <h2>Song Title Here</h2>
-            <p class="artist">Artist Name</p>
-            <p>Write 2-3 sentences about why this song stands out to you. What does it make you feel? What lyric hits hardest? Why should someone else listen to it?</p>
-            <a href="https://youtube.com" target="_blank" class="listen">Listen on YouTube →</a>
+            <h2>{{ song.title }}</h2>
+            <p class="artist">{{ song.artist }}</p>
+            {{ song.body | markdownify }}
+            {% if song.link %}
+            <a href="{{ song.link }}" target="_blank" class="listen">Listen here →</a>
+            {% endif %}
         </div>
+        {% endfor %}
 
-        <!-- AD SPACE -->
+        {% if site.songs.size == 0 %}
+        <div class="song">
+            <h2>No song highlights yet.</h2>
+            <p class="artist">Coming soon</p>
+            <p>I'll be sharing the songs I can't stop listening to. Check back soon.</p>
+        </div>
+        {% endif %}
+
         <div class="ad-space">Advertisement</div>
-
     </div>
 
     <a href="https://buymeacoffee.com/vervreads" target="_blank" class="support-btn">
