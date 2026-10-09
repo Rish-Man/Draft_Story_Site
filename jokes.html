@@ -1,3 +1,6 @@
+---
+layout: null
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -122,26 +125,22 @@
         <h1 class="page-heading">Jokes</h1>
         <p class="page-subtitle">Because laughing is underrated. New jokes added regularly.</p>
 
-        <!-- ADD NEW JOKES AT THE TOP -->
-
+        {% assign sorted_jokes = site.jokes | sort: "date" | reverse %}
+        {% for joke in sorted_jokes %}
         <div class="joke">
-            <p class="setup">Why don't scientists trust atoms?</p>
-            <p class="punchline">Because they make up everything.</p>
+            <p class="setup">{{ joke.setup }}</p>
+            <p class="punchline">{{ joke.punchline }}</p>
         </div>
+        {% endfor %}
 
+        {% if site.jokes.size == 0 %}
         <div class="joke">
-            <p class="setup">I told my wife she was drawing her eyebrows too high.</p>
-            <p class="punchline">She looked surprised.</p>
+            <p class="setup">No jokes yet.</p>
+            <p class="punchline">Check back soon — they're coming.</p>
         </div>
+        {% endif %}
 
-        <div class="joke">
-            <p class="setup">What do you call a fake noodle?</p>
-            <p class="punchline">An impasta.</p>
-        </div>
-
-        <!-- AD SPACE -->
         <div class="ad-space">Advertisement</div>
-
     </div>
 
     <a href="https://buymeacoffee.com/vervreads" target="_blank" class="support-btn">
