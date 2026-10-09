@@ -105,20 +105,44 @@ layout: null
             color: #999; margin-top: 20px; line-height: 1.6;
         }
 
+        /* ============================================ */
+        /* BUTTONS ROW */
+        /* ============================================ */
+        .cta-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
         .uncover-btn {
             display: inline-flex; align-items: center; gap: 10px;
             padding: 16px 36px; font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
             color: #000; background-color: #fff; border: none; border-radius: 50px; cursor: pointer;
             transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(255,255,255,0.2);
-            margin-top: 30px;
+            font-family: 'Poppins', sans-serif;
         }
         .uncover-btn:hover {
             transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255,255,255,0.4);
             background-color: #f0f0f0;
         }
 
+        .subscribe-hero-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 36px; font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+            color: #ffffff; background-color: transparent; border: 1.5px solid rgba(255,255,255,0.4);
+            border-radius: 50px; cursor: pointer; text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        .subscribe-hero-btn:hover {
+            background-color: rgba(255,255,255,0.1);
+            border-color: #ffffff;
+            transform: translateY(-3px);
+        }
+
         /* ============================================ */
-        /* JOKE OF THE DAY — Expanded */
+        /* JOKE OF THE DAY */
         /* ============================================ */
         .joke-of-day {
             margin-top: 40px;
@@ -211,7 +235,9 @@ layout: null
             display: inline-flex; align-items: center; gap: 10px;
             padding: 16px 40px;
             font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px;
-            color: #000; background-color: #fff; border: none; border-radius: 50px; cursor: pointer;
+            color: #000; background-color: #fff;
+            border: none; border-radius: 50px;
+            cursor: pointer; text-decoration: none;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(255,255,255,0.15);
             font-family: 'Poppins', sans-serif;
@@ -222,137 +248,18 @@ layout: null
             background-color: #f0f0f0;
         }
 
-        /* ============================================ */
-        /* MODAL / POPUP */
-        /* ============================================ */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 10000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        .modal-box {
-            background: #0f0f0f;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 20px;
-            padding: 50px 45px;
-            max-width: 480px;
-            width: 100%;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-            animation: modalIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @keyframes modalIn {
-            from { transform: translateY(20px) scale(0.96); opacity: 0; }
-            to { transform: translateY(0) scale(1); opacity: 1; }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px; right: 20px;
-            background: transparent;
-            border: none;
-            color: #888;
-            font-size: 1.8rem;
-            cursor: pointer;
-            line-height: 1;
-            padding: 5px 10px;
-            transition: color 0.3s ease;
-        }
-        .modal-close:hover { color: #fff; }
-
-        .modal-box h3 {
-            font-family: 'Abril Fatface', cursive;
-            font-size: 1.8rem;
-            color: #ffffff;
-            margin-bottom: 12px;
-            line-height: 1.2;
-        }
-
-        .modal-box p {
-            font-family: 'Josefin Sans', sans-serif;
-            font-size: 1rem;
-            color: #a0a0a0;
-            margin-bottom: 28px;
-            line-height: 1.6;
-        }
-
-        .modal-box input[type="email"] {
-            width: 100%;
-            padding: 16px 20px;
-            font-size: 1rem;
-            font-family: 'Josefin Sans', sans-serif;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 10px;
-            color: #ffffff;
-            margin-bottom: 15px;
-            transition: border-color 0.3s ease, background 0.3s ease;
-        }
-        .modal-box input[type="email"]:focus {
-            outline: none;
-            border-color: rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.08);
-        }
-        .modal-box input[type="email"]::placeholder { color: #666; }
-
-        .modal-box .subscribe-btn {
-            width: 100%;
-            padding: 16px 20px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-family: 'Poppins', sans-serif;
-            background: #ffffff;
-            color: #000000;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background 0.3s ease, transform 0.3s ease;
-        }
-        .modal-box .subscribe-btn:hover {
-            background: #e0e0e0;
-            transform: translateY(-2px);
-        }
-
-        .modal-box .form-note {
-            font-size: 0.75rem;
-            color: #666;
-            margin-top: 15px;
-            margin-bottom: 0;
-            text-align: center;
-            font-family: 'Josefin Sans', sans-serif;
-        }
-
         @media (max-width: 768px) {
             nav { padding: 15px 20px; }
             .nav-links { display: none; }
             .hero { padding: 100px 20px 60px 20px; text-align: left; }
-            .uncover-btn { width: 100%; justify-content: center; }
             .hero-description { font-size: 1.05rem; }
             .hero-description .opening { font-size: 1.25rem; }
             .joke-of-day { padding: 30px 25px; }
             .joke-of-day .joke-setup { font-size: 1.15rem; }
             .joke-of-day .joke-punchline { font-size: 1.25rem; }
             .newsletter-section { padding: 60px 20px 80px 20px; }
-            .modal-box { padding: 40px 30px; }
+            .cta-row { flex-direction: column; }
+            .uncover-btn, .subscribe-hero-btn { width: 100%; justify-content: center; }
         }
     </style>
 </head>
@@ -392,7 +299,7 @@ layout: null
                 <p class="personal-note">No gatekeeping here. Oh btw, I am also not a great writer. It's just something I do for passing time.</p>
             </div>
 
-            <!-- JOKE OF THE DAY — Expanded -->
+            <!-- JOKE OF THE DAY -->
             {% assign today_date = site.time | date: "%Y-%m-%d" %}
             {% assign today_jokes = site.jokes | where: "date", today_date %}
             
@@ -410,9 +317,15 @@ layout: null
                 {% endif %}
             </div>
 
-            <button class="uncover-btn" id="uncoverBtn">
-                Uncover More <span>→</span>
-            </button>
+            <!-- BUTTONS -->
+            <div class="cta-row">
+                <button class="uncover-btn" id="uncoverBtn">
+                    Uncover More <span>→</span>
+                </button>
+                <a href="https://vervreads.substack.com/subscribe" target="_blank" class="subscribe-hero-btn">
+                    Subscribe for Updates
+                </a>
+            </div>
         </div>
     </section>
 
@@ -421,66 +334,25 @@ layout: null
         <div class="newsletter-inner">
             <h2>Never miss a story.</h2>
             <p>Get new stories, jokes, and song highlights straight to your inbox — no spam, no algorithms, just the good stuff.</p>
-            <button class="newsletter-btn" id="newsletterBtn">
-                Subscribe →
-            </button>
+            <a href="https://vervreads.substack.com/subscribe" target="_blank" class="newsletter-btn">
+                Subscribe on Substack →
+            </a>
         </div>
     </section>
 
-    <!-- MODAL / POPUP -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal-box">
-            <button class="modal-close" id="modalClose">×</button>
-            <h3>Join the list.</h3>
-            <p>Enter your email and I'll send you new posts as they go live. Unsubscribe anytime.</p>
-            <form id="subscribeForm" action="https://buttondown.email/api/emails/embed-subscribe/YOUR-USERNAME-HERE" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.email/YOUR-USERNAME-HERE', 'popupwindow');">
-                <input type="email" name="email" placeholder="you@example.com" required>
-                <button type="submit" class="subscribe-btn">Subscribe</button>
-                <p class="form-note">Powered by Buttondown. No spam, ever.</p>
-            </form>
-        </div>
-    </div>
-
     <script>
-        // Blur transition
         document.getElementById('uncoverBtn').addEventListener('click', function(e) {
             e.preventDefault(); 
+            
             const body = document.body;
             const overlay = document.getElementById('blurOverlay');
+            
             body.classList.add('blur-out');
             overlay.classList.add('active');
+            
             setTimeout(function() {
                 window.location.href = 'originals.html';
             }, 650); 
-        });
-
-        // Newsletter modal
-        const modalOverlay = document.getElementById('modalOverlay');
-        const newsletterBtn = document.getElementById('newsletterBtn');
-        const modalClose = document.getElementById('modalClose');
-
-        newsletterBtn.addEventListener('click', function() {
-            modalOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-
-        modalClose.addEventListener('click', function() {
-            modalOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-
-        modalOverlay.addEventListener('click', function(e) {
-            if (e.target === modalOverlay) {
-                modalOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
-                modalOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-            }
         });
     </script>
 
