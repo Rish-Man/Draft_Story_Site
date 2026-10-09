@@ -28,14 +28,13 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: #fcf6e8; /* Matches the new page bg */
+            background-color: #fcf6e8; 
             z-index: 1000;
             transform-origin: left center;
-            transform: scaleX(0); /* Hidden by default */
+            transform: scaleX(0); 
             pointer-events: none;
         }
 
-        /* The animation class triggered by JS */
         .flip-out {
             animation: flipOut 1.2s forwards cubic-bezier(0.645, 0.045, 0.355, 1);
         }
@@ -171,18 +170,18 @@
     <!-- JAVASCRIPT FOR THE FLIP ANIMATION -->
     <script>
         document.getElementById('uncoverBtn').addEventListener('click', function(e) {
-            e.preventDefault(); // Prevent default link behavior
+            e.preventDefault(); 
             
             const transitionLayer = document.getElementById('transitionLayer');
-            
-            // Add the animation class
             transitionLayer.classList.add('flip-out');
             
-            // Wait for the animation to finish, then go to the new page
-            // 1200ms matches the CSS animation duration
+            // TIMING FIX: 600ms is halfway through the 1200ms animation.
+            // At 600ms, the cream block is completely covering the screen.
+            // We change the page NOW, while the screen is hidden, so the user 
+            // never sees the new page load. It feels seamless.
             setTimeout(function() {
                 window.location.href = 'originals.html';
-            }, 1200); 
+            }, 600); 
         });
     </script>
 
