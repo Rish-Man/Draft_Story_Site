@@ -1,0 +1,78 @@
+media:
+  input: images
+  output: images
+  rename: true
+
+content:
+  - name: stories
+    label: Stories
+    type: collection
+    path: stories
+    filename: "{primary}.md"
+    view:
+      fields: [title, date]
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: date
+        label: Date
+        type: date
+        required: true
+      - name: teaser
+        label: Short teaser (one line)
+        type: string
+      - name: body
+        label: Story body
+        type: rich-text
+        required: true
+
+  - name: jokes
+    label: Jokes
+    type: collection
+    path: jokes
+    filename: "{primary}.md"
+    view:
+      fields: [setup, date]
+    fields:
+      - name: setup
+        label: Setup line
+        type: string
+        required: true
+      - name: punchline
+        label: Punchline
+        type: string
+        required: true
+      - name: date
+        label: Date
+        type: date
+        required: true
+
+  - name: songs
+    label: Song Highlights
+    type: collection
+    path: songs
+    filename: "{primary}.md"
+    view:
+      fields: [title, artist]
+    fields:
+      - name: title
+        label: Song title
+        type: string
+        required: true
+      - name: artist
+        label: Artist
+        type: string
+        required: true
+      - name: link
+        label: Listen link (YouTube/Spotify)
+        type: string
+      - name: body
+        label: Why I love it
+        type: rich-text
+        required: true
+      - name: date
+        label: Date
+        type: date
+        required: true
