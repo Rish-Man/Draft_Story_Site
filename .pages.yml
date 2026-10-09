@@ -65,9 +65,10 @@ content:
         label: Artist
         type: string
         required: true
-      - name: link
-        label: Listen link (YouTube/Spotify)
+      - name: youtube
+        label: YouTube link (paste the full URL)
         type: string
+        required: true
       - name: body
         label: Why I love it
         type: rich-text
