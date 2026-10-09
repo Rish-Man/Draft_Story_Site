@@ -8,6 +8,10 @@ layout: null
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verv | Stories & Jokes</title>
     
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="verv-favicon.png">
+    <link rel="apple-touch-icon" href="verv-favicon.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600;800&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -105,9 +109,6 @@ layout: null
             color: #999; margin-top: 20px; line-height: 1.6;
         }
 
-        /* ============================================ */
-        /* BUTTONS ROW */
-        /* ============================================ */
         .cta-row {
             display: flex;
             gap: 15px;
@@ -141,9 +142,6 @@ layout: null
             transform: translateY(-3px);
         }
 
-        /* ============================================ */
-        /* JOKE OF THE DAY */
-        /* ============================================ */
         .joke-of-day {
             margin-top: 40px;
             padding: 45px 50px;
@@ -200,9 +198,6 @@ layout: null
         }
         .joke-of-day .joke-invite a:hover { opacity: 0.7; }
 
-        /* ============================================ */
-        /* NEWSLETTER SECTION */
-        /* ============================================ */
         .newsletter-section {
             background: var(--bg-dark);
             padding: 80px 40px 100px 40px;
@@ -248,6 +243,64 @@ layout: null
             background-color: #f0f0f0;
         }
 
+        /* ============================================ */
+        /* FOOTER */
+        /* ============================================ */
+        footer {
+            background: #000000;
+            padding: 50px 40px 40px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.6rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px 25px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .footer-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover { color: #ffffff; }
+
+        .footer-links .divider-dot {
+            color: #444;
+            font-size: 0.8rem;
+        }
+
+        .footer-copyright {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.8rem;
+            color: #666;
+            letter-spacing: 0.5px;
+        }
+
         @media (max-width: 768px) {
             nav { padding: 15px 20px; }
             .nav-links { display: none; }
@@ -260,6 +313,9 @@ layout: null
             .newsletter-section { padding: 60px 20px 80px 20px; }
             .cta-row { flex-direction: column; }
             .uncover-btn, .subscribe-hero-btn { width: 100%; justify-content: center; }
+            footer { padding: 40px 20px 30px 20px; }
+            .footer-links { flex-direction: column; gap: 15px; }
+            .footer-links .divider-dot { display: none; }
         }
     </style>
 </head>
@@ -339,6 +395,29 @@ layout: null
             </a>
         </div>
     </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <a href="index.html" class="footer-logo">Verv</a>
+            
+            <div class="footer-links">
+                <a href="originals.html">Stories</a>
+                <span class="divider-dot">•</span>
+                <a href="jokes.html">Jokes</a>
+                <span class="divider-dot">•</span>
+                <a href="songs.html">Songs</a>
+                <span class="divider-dot">•</span>
+                <a href="https://rish-man.github.io/SDG-Theme-based-Games/" target="_blank">SDG Games</a>
+                <span class="divider-dot">•</span>
+                <a href="https://instagram.com/verv.reads" target="_blank">Instagram</a>
+                <span class="divider-dot">•</span>
+                <a href="https://vervreads.substack.com" target="_blank">Substack</a>
+            </div>
+
+            <p class="footer-copyright">© 2026 Verv · Made with care · No cookies, no tracking</p>
+        </div>
+    </footer>
 
     <script>
         document.getElementById('uncoverBtn').addEventListener('click', function(e) {
