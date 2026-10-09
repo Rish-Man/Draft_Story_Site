@@ -4,7 +4,6 @@ baseurl: ""
 url: "https://rish-man.github.io/verv.reads"
 
 markdown: kramdown
-permalink: pretty
 
 collections:
   stories:
