@@ -8,6 +8,15 @@ layout: null
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Originals | Verv</title>
     
+    <meta name="application-name" content="Verv">
+    <meta name="description" content="Handpicked stories, jokes, and song highlights — curated by an actual human.">
+    <meta property="og:site_name" content="Verv">
+    <meta property="og:title" content="The Originals | Verv">
+    <meta property="og:description" content="Handpicked stories, jokes, and song highlights — curated by an actual human.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rish-man.github.io/verv.reads/originals.html">
+    <meta property="og:image" content="https://rish-man.github.io/verv.reads/verv-favicon.png">
+    
     <link rel="icon" type="image/png" href="verv-favicon.png">
     <link rel="apple-touch-icon" href="verv-favicon.png">
     
@@ -182,7 +191,6 @@ layout: null
             font-size: clamp(0.9rem, 2.4vw, 1rem);
         }
 
-        /* FLOATING FOLLOW BUTTON — Instagram instead of support */
         .follow-btn {
             position: fixed; bottom: 20px; right: 20px;
             display: inline-flex; align-items: center; gap: 8px;
@@ -259,78 +267,4 @@ layout: null
             footer { padding: 40px 5vw 30px 5vw; }
             .footer-links { flex-direction: column; gap: 4px; }
             .footer-links .divider-dot { display: none; }
-            .footer-links a { padding: 8px 0; }
-        }
-    </style>
-</head>
-<body>
-
-    <a href="index.html" class="back-btn">← Back to Home</a>
-
-    <div class="page-wrapper">
-        <h1 class="originals-heading">The Originals</h1>
-        <div class="divider"></div>
-        
-        <p class="intro-text">
-            Handpicked stories, jokes, and song highlights. Everything here is written or curated by me — no algorithms, no filler.
-        </p>
-
-        <h2 class="section-heading">Stories</h2>
-
-        {% assign sorted_stories = site.stories | sort: "date" | reverse %}
-        {% for story in sorted_stories %}
-        <a href="{{ story.url }}" class="story-link">
-            <h3>{{ story.title }}</h3>
-            {% if story.teaser %}<p>{{ story.teaser }}</p>{% endif %}
-            <span class="read-more">Read Story →</span>
-        </a>
-        {% endfor %}
-
-        {% if site.stories.size == 0 %}
-        <div class="empty-note">
-            No stories yet — but the first one is coming soon.
-        </div>
-        {% endif %}
-
-        <h2 class="section-heading">Quick Reads</h2>
-
-        <div class="quick-links">
-            <a href="jokes.html" class="quick-link">
-                <h3>Jokes</h3>
-                <p>Short & Sweet</p>
-            </a>
-            <a href="songs.html" class="quick-link">
-                <h3>Song Highlights</h3>
-                <p>Music & Words</p>
-            </a>
-        </div>
-    </div>
-
-    <footer>
-        <div class="footer-inner">
-            <a href="index.html" class="footer-logo">Verv</a>
-            
-            <div class="footer-links">
-                <a href="originals.html">Stories</a>
-                <span class="divider-dot">•</span>
-                <a href="jokes.html">Jokes</a>
-                <span class="divider-dot">•</span>
-                <a href="songs.html">Songs</a>
-                <span class="divider-dot">•</span>
-                <a href="https://rish-man.github.io/SDG-Theme-based-Games/" target="_blank">SDG Games</a>
-                <span class="divider-dot">•</span>
-                <a href="https://instagram.com/verv.reads" target="_blank">Instagram</a>
-                <span class="divider-dot">•</span>
-                <a href="https://vervreads.substack.com" target="_blank">Substack</a>
-            </div>
-
-            <p class="footer-copyright">© 2026 Verv · Made with care · No cookies, no tracking</p>
-        </div>
-    </footer>
-
-    <a href="https://instagram.com/verv.reads" target="_blank" class="follow-btn">
-        📷 Follow @verv.reads
-    </a>
-
-</body>
-</html>
+            .footer
