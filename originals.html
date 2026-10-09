@@ -1,3 +1,6 @@
+---
+layout: null
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,7 +81,6 @@
             color: #4a4741;
         }
 
-        /* Section Headers */
         .section-heading {
             font-family: 'Abril Fatface', cursive;
             font-size: 2rem;
@@ -88,7 +90,6 @@
             border-bottom: 1px solid rgba(44, 42, 38, 0.15);
         }
 
-        /* Story Cards */
         .story-link {
             display: block;
             text-decoration: none;
@@ -128,7 +129,6 @@
             letter-spacing: 1.5px;
         }
 
-        /* Quick Links Row */
         .quick-links {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -147,10 +147,7 @@
             text-align: center;
             transition: transform 0.3s ease, background 0.3s ease;
         }
-        .quick-link:hover {
-            transform: translateY(-3px);
-            background: rgba(44, 42, 38, 0.1);
-        }
+        .quick-link:hover { transform: translateY(-3px); background: rgba(44, 42, 38, 0.1); }
         .quick-link h3 {
             font-family: 'Abril Fatface', cursive;
             font-size: 1.4rem;
@@ -194,7 +191,6 @@
             .page-wrapper { padding: 100px 20px 100px 20px; }
             .quick-links { grid-template-columns: 1fr; }
             .support-btn { bottom: 15px; right: 15px; padding: 12px 18px; font-size: 0.75rem; }
-            .back-btn { top: 15px; left: 15px; padding: 8px 16px; font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -210,22 +206,23 @@
             Handpicked stories, jokes, and song highlights. Everything here is written or curated by me — no algorithms, no filler.
         </p>
 
-        <!-- STORIES SECTION -->
         <h2 class="section-heading">Stories</h2>
 
-        <!-- Copy this block for each new story -->
-        <a href="stories/your-story-slug.html" class="story-link">
-            <h3>Your First Story Title</h3>
-            <p>A one-line teaser about the story. Make it intriguing enough to click.</p>
+        {% assign sorted_stories = site.stories | sort: "date" | reverse %}
+        {% for story in sorted_stories %}
+        <a href="{{ story.url }}" class="story-link">
+            <h3>{{ story.title }}</h3>
+            {% if story.teaser %}<p>{{ story.teaser }}</p>{% endif %}
             <span class="read-more">Read Story →</span>
         </a>
+        {% endfor %}
 
-        <!-- Remove this when you have real stories -->
+        {% if site.stories.size == 0 %}
         <div class="empty-note">
             No stories yet — but the first one is coming soon.
         </div>
+        {% endif %}
 
-        <!-- JOKES & SONGS SECTION -->
         <h2 class="section-heading">Quick Reads</h2>
 
         <div class="quick-links">
@@ -238,7 +235,6 @@
                 <p>Music & Words</p>
             </a>
         </div>
-
     </div>
 
     <a href="https://buymeacoffee.com/vervreads" target="_blank" class="support-btn">
