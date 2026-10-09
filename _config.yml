@@ -1,0 +1,18 @@
+title: Verv
+description: Handpicked stories, jokes, and creative writing.
+baseurl: ""
+url: "https://rish-man.github.io/verv.reads"
+
+# Jekyll settings
+markdown: kramdown
+permalink: pretty
+
+# Folders Jekyll should read content from
+collections:
+  stories:
+    output: true
+    permalink: /stories/:name
+  jokes:
+    output: false
+  songs:
+    output: false
