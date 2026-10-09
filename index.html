@@ -53,7 +53,6 @@ layout: null
             z-index: -1; background: linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, rgba(5,5,5,0.8) 60%, rgba(5,5,5,1) 100%);
         }
 
-        /* NAVBAR */
         nav {
             position: fixed; top: 0; width: 100%;
             padding: 14px 5vw;
@@ -68,7 +67,6 @@ layout: null
         .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s ease; }
         .nav-links a:hover { color: var(--text-main); }
 
-        /* HERO */
         .hero {
             min-height: 100vh;
             display: flex; flex-direction: column; justify-content: center;
@@ -126,7 +124,6 @@ layout: null
             color: #999; margin-top: 20px; line-height: 1.6;
         }
 
-        /* BUTTONS */
         .cta-row {
             display: flex;
             gap: 15px;
@@ -170,7 +167,6 @@ layout: null
             transform: translateY(-3px);
         }
 
-        /* JOKE OF THE DAY */
         .joke-of-day {
             margin-top: 40px;
             padding: clamp(24px, 4vw, 45px) clamp(20px, 4vw, 50px);
@@ -227,7 +223,6 @@ layout: null
         }
         .joke-of-day .joke-invite a:hover { opacity: 0.7; }
 
-        /* SUBSCRIBE SECTION — now the Instagram DM version */
         .newsletter-section {
             background: var(--bg-dark);
             padding: clamp(50px, 8vw, 80px) 5vw clamp(70px, 10vw, 100px) 5vw;
@@ -275,7 +270,22 @@ layout: null
             background-color: #f0f0f0;
         }
 
-        /* FOOTER */
+        /* FLOATING SUPPORT BUTTON — kept on homepage */
+        .support-btn {
+            position: fixed; bottom: 20px; right: 20px;
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 22px;
+            background: #ffffff; color: #000000;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem; font-weight: 600; text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 6px 20px rgba(255,255,255,0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 999;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .support-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(255,255,255,0.4); }
+
         footer {
             background: #000000;
             padding: 45px 5vw 35px 5vw;
@@ -333,7 +343,6 @@ layout: null
             letter-spacing: 0.5px;
         }
 
-        /* MOBILE */
         @media (max-width: 768px) {
             nav { padding: 12px 5vw; }
             .nav-logo { font-size: 1.5rem; }
@@ -352,6 +361,8 @@ layout: null
             .footer-links { flex-direction: column; gap: 4px; }
             .footer-links .divider-dot { display: none; }
             .footer-links a { padding: 8px 0; }
+
+            .support-btn { bottom: 15px; right: 15px; padding: 12px 18px; font-size: 0.75rem; }
         }
 
         @media (max-width: 380px) {
@@ -400,7 +411,6 @@ layout: null
                 <p class="personal-note">No gatekeeping here. Oh btw, I am also not a great writer. It's just something I do for passing time.</p>
             </div>
 
-            <!-- JOKE OF THE DAY -->
             {% assign today_date = site.time | date: "%Y-%m-%d" %}
             {% assign today_jokes = site.jokes | where: "date", today_date %}
             
@@ -418,7 +428,6 @@ layout: null
                 {% endif %}
             </div>
 
-            <!-- BUTTONS — both now go to different DM messages -->
             <div class="cta-row">
                 <button class="uncover-btn" id="uncoverBtn">
                     Uncover More <span>→</span>
@@ -430,7 +439,6 @@ layout: null
         </div>
     </section>
 
-    <!-- SUBSCRIBE SECTION -->
     <section class="newsletter-section">
         <div class="newsletter-inner">
             <h2>Never miss a story.</h2>
@@ -441,7 +449,6 @@ layout: null
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-inner">
             <a href="index.html" class="footer-logo">Verv</a>
@@ -463,6 +470,11 @@ layout: null
             <p class="footer-copyright">© 2026 Verv · Made with care · No cookies, no tracking</p>
         </div>
     </footer>
+
+    <!-- SUPPORT THE WRITER BUTTON — kept on homepage -->
+    <a href="https://instagram.com/verv.reads" target="_blank" class="support-btn">
+        ☕ Support the Writer
+    </a>
 
     <script>
         document.getElementById('uncoverBtn').addEventListener('click', function(e) {
