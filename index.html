@@ -227,7 +227,7 @@ layout: null
         }
         .joke-of-day .joke-invite a:hover { opacity: 0.7; }
 
-        /* NEWSLETTER */
+        /* SUBSCRIBE SECTION — now the Instagram DM version */
         .newsletter-section {
             background: var(--bg-dark);
             padding: clamp(50px, 8vw, 80px) 5vw clamp(70px, 10vw, 100px) 5vw;
@@ -333,59 +333,34 @@ layout: null
             letter-spacing: 0.5px;
         }
 
-        /* ============================================ */
-        /* MOBILE SPECIFIC */
-        /* ============================================ */
+        /* MOBILE */
         @media (max-width: 768px) {
             nav { padding: 12px 5vw; }
             .nav-logo { font-size: 1.5rem; }
             .nav-links { display: none; }
 
-            .hero {
-                padding: 100px 5vw 50px 5vw;
-                text-align: left;
-            }
+            .hero { padding: 100px 5vw 50px 5vw; text-align: left; }
 
             .brand-title { margin-bottom: 16px; }
 
-            .cta-row {
-                flex-direction: column;
-                gap: 12px;
-            }
-            .uncover-btn, .subscribe-hero-btn {
-                width: 100%;
-                padding: 18px 24px;
-            }
+            .cta-row { flex-direction: column; gap: 12px; }
+            .uncover-btn, .subscribe-hero-btn { width: 100%; padding: 18px 24px; }
 
-            .newsletter-btn {
-                width: 100%;
-                padding: 18px 24px;
-            }
+            .newsletter-btn { width: 100%; padding: 18px 24px; }
 
             footer { padding: 40px 5vw 30px 5vw; }
-            .footer-links {
-                flex-direction: column;
-                gap: 4px;
-            }
+            .footer-links { flex-direction: column; gap: 4px; }
             .footer-links .divider-dot { display: none; }
             .footer-links a { padding: 8px 0; }
         }
 
-        /* VERY SMALL PHONES (under 380px, like iPhone SE) */
         @media (max-width: 380px) {
             nav { padding: 10px 4vw; }
             .nav-logo { font-size: 1.3rem; }
-
             .hero { padding: 90px 4vw 40px 4vw; }
-
             .brand-title { font-size: 3rem; }
-
             .dm-line { padding: 12px 16px; }
-
-            .joke-of-day {
-                padding: 20px 18px;
-                border-left-width: 3px;
-            }
+            .joke-of-day { padding: 20px 18px; border-left-width: 3px; }
         }
     </style>
 </head>
@@ -443,25 +418,25 @@ layout: null
                 {% endif %}
             </div>
 
-            <!-- BUTTONS -->
+            <!-- BUTTONS — both now go to different DM messages -->
             <div class="cta-row">
                 <button class="uncover-btn" id="uncoverBtn">
                     Uncover More <span>→</span>
                 </button>
-                <a href="https://vervreads.substack.com/subscribe" target="_blank" class="subscribe-hero-btn">
-                    Subscribe for Updates
+                <a href="https://ig.me/m/verv.reads?text=Hey!%20I%20want%20to%20subscribe%20to%20Verv!" target="_blank" class="subscribe-hero-btn">
+                    Subscribe via DM
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- NEWSLETTER SECTION -->
+    <!-- SUBSCRIBE SECTION -->
     <section class="newsletter-section">
         <div class="newsletter-inner">
             <h2>Never miss a story.</h2>
-            <p>Get new stories, jokes, and song highlights straight to your inbox — no spam, no algorithms, just the good stuff.</p>
-            <a href="https://vervreads.substack.com/subscribe" target="_blank" class="newsletter-btn">
-                Subscribe on Substack →
+            <p>I'll DM you when new posts go live. No spam, no algorithms — just a heads-up the moment something new drops on Verv.</p>
+            <a href="https://ig.me/m/verv.reads?text=Hey!%20I%20want%20to%20subscribe%20to%20Verv!" target="_blank" class="newsletter-btn">
+                Subscribe via Instagram DM →
             </a>
         </div>
     </section>
