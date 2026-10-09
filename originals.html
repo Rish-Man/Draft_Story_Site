@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Originals | Verv</title>
+    
+    <!-- Fonts: Abril Fatface for heading, Poppins for text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            /* Set your new parchment background here */
+            background-image: url('originals-bg.png'); 
+            background-color: #fcf6e8; /* Fallback color matching the image */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            
+            font-family: 'Poppins', sans-serif;
+            color: #2c2a26; /* Dark charcoal text for contrast on light bg */
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Overlay to give a slight vignette effect to the parchment */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.15) 100%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- BACK BUTTON --- */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: rgba(44, 42, 38, 0.1);
+            color: #2c2a26;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+            transition: background 0.3s ease;
+            z-index: 100;
+        }
+        .back-btn:hover {
+            background: rgba(44, 42, 38, 0.2);
+        }
+
+        /* --- PAGE CONTENT --- */
+        .page-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 120px 40px 80px 40px;
+        }
+
+        /* --- MAIN HEADING (Abril Fatface) --- */
+        .originals-heading {
+            font-family: 'Abril Fatface', cursive;
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            color: #1a1815;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        /* Decorative divider */
+        .divider {
+            width: 80px;
+            height: 3px;
+            background-color: #2c2a26;
+            margin: 0 auto 50px auto;
+            opacity: 0.5;
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 60px auto;
+            font-weight: 400;
+            color: #4a4741;
+        }
+
+        /* --- SCROLLABLE CONTENT SECTIONS --- */
+        .content-block {
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(44, 42, 38, 0.1);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease;
+        }
+
+        .content-block:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .content-block h2 {
+            font-family: 'Abril Fatface', cursive;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #1a1815;
+        }
+
+        .content-block p {
+            font-size: 1rem;
+            color: #3a3833;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .page-wrapper { padding: 100px 20px 60px 20px; }
+            .content-block { padding: 25px; }
+            .originals-heading { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Back button to return to homepage -->
+    <a href="index.html" class="back-btn">← Back to Home</a>
+
+    <div class="page-wrapper">
+        <!-- MAIN HEADING IN ABRIL FATFACE -->
+        <h1 class="originals-heading">The Originals</h1>
+        <div class="divider"></div>
+        
+        <p class="intro-text">
+            Welcome to our exclusive collection. Here, we bring you original stories, deep dives, and unique perspectives you won't find anywhere else.
+        </p>
+
+        <!-- Scrollable content blocks for your future stories -->
+        <div class="content-block">
+            <h2>Featured Story One</h2>
+            <p>This is where your first original story will go. You can replace this text with your own writing. The background is designed to be easy on the eyes, mimicking the feel of a classic book or magazine, making it perfect for long-form reading.</p>
+        </div>
+
+        <div class="content-block">
+            <h2>Featured Story Two</h2>
+            <p>Another placeholder for your amazing content. The layout here supports long paragraphs, dialogue, and even images if you decide to add them later. It is fully scrollable, so your readers can enjoy your work without any distractions.</p>
+        </div>
+
+        <div class="content-block">
+            <h2>Coming Soon</h2>
+            <p>We are constantly updating The Originals with fresh content. Keep checking back for new stories, jokes, and creative pieces.</p>
+        </div>
+        
+        <!-- Extra space to demonstrate scrolling -->
+        <div style="height: 20vh;"></div>
+    </div>
+
+</body>
+</html>
