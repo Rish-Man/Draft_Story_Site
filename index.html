@@ -5,149 +5,302 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verv | Stories & Jokes</title>
     
-    <!-- 1. Import Pacifico Font from Google Fonts -->
+    <!-- Google Fonts: Pacifico for Logo, Poppins for Text -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
     <style>
-        /* --- RESET & BASIC STYLES --- */
+        /* --- RESET & VARIABLES --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            /* 2. Background image is now set to bg.png */
-            background-image: url('bg.png'); 
-            
-            /* Make the background cover the whole screen and stay fixed */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-color: #000; /* Fallback color if image fails */
-            
-            font-family: 'Poppins', sans-serif;
-            color: #ffffff;
-            height: 100vh;
-            overflow-y: scroll; /* Allows scrolling */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        :root {
+            --bg-dark: #050505;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --accent: #ffffff;
         }
 
-        /* --- OVERLAY TO MAKE TEXT POP --- */
-        /* Adds a subtle dark gradient over the image so white text is always readable */
-        body::before {
-            content: '';
-            position: absolute;
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- BACKGROUND IMAGE --- */
+        .bg-wrapper {
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
-            z-index: -1; /* Puts the overlay behind the content */
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            /* Your image */
+            background-image: url('bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
-        /* --- HERO SECTION (The main content) --- */
+        /* Dark Gradient overlay so text pops and fades to black for content below */
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, rgba(5,5,5,0.8) 60%, rgba(5,5,5,1) 100%);
+        }
+
+        /* --- MODERN STICKY NAVBAR --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* Frosted glass effect */
+            background: rgba(5, 5, 5, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 100;
+        }
+
+        .nav-logo {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.8rem;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* --- HERO SECTION --- */
         .hero {
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start; /* Aligns text to the left, like modern sites */
-            min-height: 90vh; /* Takes up 90% of the screen height */
-            width: 100%;
+            padding: 0 40px;
             max-width: 1200px;
-            padding: 20px 40px;
-            /* Push content down slightly so it's not perfectly centered */
-            padding-top: 15vh; 
+            margin: 0 auto;
+            margin-top: 60px; /* Offset for navbar */
         }
 
-        /* --- THE "VERV" TITLE --- */
+        .hero-content {
+            max-width: 650px;
+        }
+
+        /* Little modern badge above title */
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            color: #e0e0e0;
+        }
+
         .brand-title {
             font-family: 'Pacifico', cursive;
-            font-size: 6rem; /* Very large text */
-            color: #ffffff;
-            margin-bottom: 20px;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.6); /* Adds a glow/shadow */
-            letter-spacing: 2px;
-            line-height: 1.1;
+            font-size: clamp(4rem, 8vw, 7rem); /* Responsive sizing */
+            line-height: 1;
+            margin-bottom: 25px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.8);
         }
 
-        /* --- DESCRIPTION TEXT --- */
-        .description {
+        .hero-description {
             font-size: 1.2rem;
             font-weight: 300;
-            line-height: 1.6;
-            max-width: 600px; /* Prevents text from stretching too wide */
-            color: #e0e0e0;
-            
-            /* Glassmorphism Effect (Frosted glass look) */
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            color: #d1d1d1;
+            margin-bottom: 40px;
         }
 
-        /* --- SCROLL INDICATOR --- */
-        /* Just a little visual cue that you can scroll down */
-        .scroll-indicator {
-            margin-top: 50px;
-            font-size: 0.9rem;
-            color: #aaa;
+        /* Scroll indicator positioned at bottom of hero */
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            opacity: 0.8;
+            gap: 15px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             animation: bounce 2s infinite;
         }
 
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-5px);}
-            60% {transform: translateY(-5px);}
+            40% {transform: translateY(-8px);}
+            60% {transform: translateY(-4px);}
         }
 
-        /* --- RESPONSIVE DESIGN (For Phones) --- */
+        /* --- CONTENT SECTION (Makes the page scrollable) --- */
+        .content-section {
+            background: var(--bg-dark);
+            padding: 80px 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Modern Grid Layout for future stories */
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .story-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 30px;
+            transition: transform 0.3s ease, background 0.3s ease;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .story-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .story-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
         @media (max-width: 768px) {
-            .brand-title {
-                font-size: 4rem;
+            nav {
+                padding: 15px 20px;
             }
-            .description {
-                font-size: 1rem;
-                padding: 20px;
+            .nav-links {
+                display: none; /* Hide nav links on small phones for now */
             }
             .hero {
-                align-items: center; /* Center on mobile */
+                padding: 0 20px;
                 text-align: center;
-                padding-top: 25vh;
+            }
+            .scroll-down {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .content-section {
+                padding: 60px 20px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- HERO SECTION -->
-    <main class="hero">
-        <h1 class="brand-title">Verv</h1>
-        
-        <div class="description">
-            <p>Welcome to Verv. Dive into a curated collection of captivating stories, quick-witted jokes, and creative writing. We bring you the best content to brighten your day and spark your imagination. Scroll down to explore.</p>
-        </div>
+    <!-- BACKGROUND LAYERS -->
+    <div class="bg-wrapper"></div>
+    <div class="bg-overlay"></div>
 
-        <!-- Small visual cue to scroll -->
-        <div class="scroll-indicator">
-            <span>Scroll for more</span>
+    <!-- NAVBAR -->
+    <nav>
+        <a href="#" class="nav-logo">Verv</a>
+        <div class="nav-links">
+            <a href="#">Stories</a>
+            <a href="#">Jokes</a>
+            <a href="#">About</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge">New Stories Weekly</span>
+            <h1 class="brand-title">Verv</h1>
+            <p class="hero-description">
+                Dive into a curated collection of captivating stories, quick-witted jokes, and creative writing. We bring you the best content to brighten your day and spark your imagination.
+            </p>
+        </div>
+        
+        <div class="scroll-down">
+            <span>Scroll to explore</span>
             <span>↓</span>
         </div>
-    </main>
+    </section>
 
-    <!-- Empty space below to allow scrolling (for future buttons) -->
-    <div style="height: 50vh; width: 100%;"></div>
+    <!-- CONTENT SECTION (This makes the page scrollable) -->
+    <section class="content-section">
+        <h2 class="section-title">Latest Drops</h2>
+        
+        <div class="story-grid">
+            <!-- Placeholder Cards for future content -->
+            <div class="story-card">
+                <h3>Story Title One</h3>
+                <p>Coming soon. Get ready for an immersive reading experience.</p>
+            </div>
+            <div class="story-card">
+                <h3>Joke of the Day</h3>
+                <p>Coming soon. A quick laugh to brighten your mood.</p>
+            </div>
+            <div class="story-card">
+                <h3>Featured Writer</h3>
+                <p>Coming soon. Discover new voices and perspectives.</p>
+            </div>
+            <div class="story-card">
+                <h3>Story Title Two</h3>
+                <p>Coming soon. Another captivating tale awaits you here.</p>
+            </div>
+        </div>
+    </section>
 
 </body>
 </html>
