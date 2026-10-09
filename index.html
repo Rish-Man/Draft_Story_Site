@@ -19,37 +19,59 @@
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
             line-height: 1.6;
+            /* Crucial for 3D flip effect */
+            perspective: 2000px; 
+            transform-style: preserve-3d;
         }
 
-        /* --- PAGE FLIP TRANSITION OVERLAY --- */
-        .page-transition {
+        /* --- THE 3D PAGE FLIP LAYER --- */
+        .flip-page {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: #fcf6e8; 
+            background-color: #fcf6e8;
             z-index: 1000;
+            
+            /* Set the pivot point to the LEFT edge (like a book spine) */
             transform-origin: left center;
-            transform: scaleX(0); 
-            pointer-events: none;
+            
+            /* Start rotated 90 degrees away, hidden from view */
+            transform: rotateY(-90deg) translateZ(1px);
+            
+            /* Add a shadow to give it depth */
+            box-shadow: 20px 0 50px rgba(0,0,0,0.5);
+            
+            /* Hide it until we need it */
+            visibility: hidden;
+            
+            /* The actual flip animation */
+            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1), visibility 1s;
         }
 
-        .flip-out {
-            animation: flipOut 1.2s forwards cubic-bezier(0.645, 0.045, 0.355, 1);
+        /* The class we add with JavaScript to trigger the flip */
+        .flip-page.active {
+            visibility: visible;
+            transform: rotateY(0deg) translateZ(1px);
         }
 
-        @keyframes flipOut {
-            0% { transform: scaleX(0); transform-origin: left center; }
-            50% { transform: scaleX(1); transform-origin: left center; }
-            51% { transform-origin: right center; }
-            100% { transform: scaleX(0); transform-origin: right center; }
+        /* We also rotate the main content backwards to make the flip look deeper */
+        .main-content {
+            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transform-origin: right center;
+            transform-style: preserve-3d;
+        }
+        
+        .main-content.pushed-back {
+            transform: rotateY(20deg) scale(0.95);
+            opacity: 0.5;
         }
 
         /* --- BACKGROUND LAYERS --- */
         .bg-wrapper {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: -2; background-image: url('bg.png');
+            z-index: -2; background-image: url('bg.png.avif');
             background-size: cover; background-position: center; background-repeat: no-repeat;
         }
         .bg-overlay {
@@ -87,7 +109,7 @@
         }
         .hero-description { font-size: 1.2rem; font-weight: 300; color: #d1d1d1; margin-bottom: 40px; }
 
-        /* --- THE NEW UNCOVER BUTTON --- */
+        /* --- UNCOVER BUTTON --- */
         .uncover-btn {
             display: inline-flex; align-items: center; gap: 10px;
             padding: 16px 36px; font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
@@ -123,65 +145,78 @@
 </head>
 <body>
 
-    <!-- PAGE FLIP TRANSITION LAYER -->
-    <div class="page-transition" id="transitionLayer"></div>
+    <!-- THE 3D PAGE THAT FLIPS IN -->
+    <div class="flip-page" id="flipPage">
+        <!-- This empty area will be covered by the new page. 
+             We just need a solid cream color here, since the new 
+             page will cover the whole screen after the flip. -->
+    </div>
 
-    <!-- BACKGROUND LAYERS -->
-    <div class="bg-wrapper"></div>
-    <div class="bg-overlay"></div>
+    <!-- MAIN CONTENT (Everything on the homepage goes inside this) -->
+    <div class="main-content" id="mainContent">
+    
+        <!-- BACKGROUND LAYERS -->
+        <div class="bg-wrapper"></div>
+        <div class="bg-overlay"></div>
 
-    <!-- NAVBAR -->
-    <nav>
-        <a href="#" class="nav-logo">Verv</a>
-        <div class="nav-links">
-            <a href="#">Stories</a>
-            <a href="#">Jokes</a>
-            <a href="#">About</a>
-        </div>
-    </nav>
+        <!-- NAVBAR -->
+        <nav>
+            <a href="#" class="nav-logo">Verv</a>
+            <div class="nav-links">
+                <a href="#">Stories</a>
+                <a href="#">Jokes</a>
+                <a href="#">About</a>
+            </div>
+        </nav>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="hero-content">
-            <span class="badge">New Stories Weekly</span>
-            <h1 class="brand-title">Verv</h1>
-            <p class="hero-description">
-                Dive into a curated collection of captivating stories, quick-witted jokes, and creative writing. We bring you the best content to brighten your day and spark your imagination.
-            </p>
-            
-            <!-- THE UNCOVER BUTTON -->
-            <button class="uncover-btn" id="uncoverBtn">
-                Uncover More <span>→</span>
-            </button>
-        </div>
-    </section>
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="hero-content">
+                <span class="badge">New Stories Weekly</span>
+                <h1 class="brand-title">Verv</h1>
+                <p class="hero-description">
+                    Dive into a curated collection of captivating stories, quick-witted jokes, and creative writing. We bring you the best content to brighten your day and spark your imagination.
+                </p>
+                
+                <button class="uncover-btn" id="uncoverBtn">
+                    Uncover More <span>→</span>
+                </button>
+            </div>
+        </section>
 
-    <!-- CONTENT SECTION -->
-    <section class="content-section">
-        <h2 class="section-title">Latest Drops</h2>
-        <div class="story-grid">
-            <div class="story-card"><h3>Story Title One</h3><p>Coming soon. Get ready for an immersive reading experience.</p></div>
-            <div class="story-card"><h3>Joke of the Day</h3><p>Coming soon. A quick laugh to brighten your mood.</p></div>
-            <div class="story-card"><h3>Featured Writer</h3><p>Coming soon. Discover new voices and perspectives.</p></div>
-            <div class="story-card"><h3>Story Title Two</h3><p>Coming soon. Another captivating tale awaits you here.</p></div>
-        </div>
-    </section>
+        <!-- CONTENT SECTION -->
+        <section class="content-section">
+            <h2 class="section-title">Latest Drops</h2>
+            <div class="story-grid">
+                <div class="story-card"><h3>Story Title One</h3><p>Coming soon. Get ready for an immersive reading experience.</p></div>
+                <div class="story-card"><h3>Joke of the Day</h3><p>Coming soon. A quick laugh to brighten your mood.</p></div>
+                <div class="story-card"><h3>Featured Writer</h3><p>Coming soon. Discover new voices and perspectives.</p></div>
+                <div class="story-card"><h3>Story Title Two</h3><p>Coming soon. Another captivating tale awaits you here.</p></div>
+            </div>
+        </section>
+        
+    </div>
 
-    <!-- JAVASCRIPT FOR THE FLIP ANIMATION -->
+    <!-- JAVASCRIPT FOR THE 3D FLIP -->
     <script>
         document.getElementById('uncoverBtn').addEventListener('click', function(e) {
             e.preventDefault(); 
             
-            const transitionLayer = document.getElementById('transitionLayer');
-            transitionLayer.classList.add('flip-out');
+            const flipPage = document.getElementById('flipPage');
+            const mainContent = document.getElementById('mainContent');
             
-            // TIMING FIX: 600ms is halfway through the 1200ms animation.
-            // At 600ms, the cream block is completely covering the screen.
-            // We change the page NOW, while the screen is hidden, so the user 
-            // never sees the new page load. It feels seamless.
+            // 1. Push the homepage back in 3D space
+            mainContent.classList.add('pushed-back');
+            
+            // 2. Trigger the page to flip in
+            flipPage.classList.add('active');
+            
+            // 3. Wait for the animation to reach the point where the new page
+            //    completely covers the screen (about 1000ms / 1s), 
+            //    then navigate to the new page.
             setTimeout(function() {
                 window.location.href = 'originals.html';
-            }, 600); 
+            }, 1000); 
         });
     </script>
 
