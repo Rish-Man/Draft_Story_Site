@@ -40,7 +40,6 @@ layout: null
             -webkit-text-size-adjust: 100%;
         }
 
-        /* Base link reset — but explicitly allow styled buttons to override */
         a { text-decoration: none; }
         a:visited { text-decoration: none; }
 
@@ -217,7 +216,9 @@ layout: null
             font-weight: 600;
             color: #ffffff !important;
             line-height: 1.5;
+            margin-bottom: 6px;
         }
+        .joke-of-day .joke-punchline:last-child { margin-bottom: 0; }
 
         .joke-of-day .joke-invite {
             font-family: 'Josefin Sans', sans-serif;
@@ -494,7 +495,9 @@ layout: null
                 {% if today_jokes.size > 0 %}
                     {% assign today_joke = today_jokes | first %}
                     <p class="joke-setup">{{ today_joke.setup }}</p>
-                    <p class="joke-punchline">{{ today_joke.punchline }}</p>
+                    {% for p in today_joke.punchlines %}
+                    <p class="joke-punchline">{{ p.line }}</p>
+                    {% endfor %}
                 {% else %}
                     <p class="joke-invite">
                         Would you like to add one? DM me at 
