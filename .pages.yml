@@ -40,10 +40,15 @@ content:
         label: Setup line
         type: string
         required: true
-      - name: punchline
-        label: Punchline
-        type: string
-        required: true
+      - name: punchlines
+        label: Punchlines
+        type: object
+        list: true
+        fields:
+          - name: line
+            label: Punchline
+            type: string
+            required: true
       - name: date
         label: Date
         type: date
