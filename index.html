@@ -366,6 +366,84 @@ layout: null
             font-style: italic;
         }
 
+        /* NEWS SECTION */
+        .news-section {
+            background: var(--bg-dark);
+            padding: 50px 5vw 60px 5vw;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .news-inner {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .news-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            color: #999 !important;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+
+        .news-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .news-item {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: border-color 0.3s ease;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-item:hover {
+            border-bottom-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .news-source {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #666 !important;
+            flex-shrink: 0;
+            min-width: 80px;
+        }
+
+        .news-title {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: clamp(0.9rem, 2.3vw, 1rem);
+            color: #d1d1d1 !important;
+            line-height: 1.4;
+            transition: color 0.3s ease;
+        }
+
+        .news-item:hover .news-title {
+            color: #ffffff !important;
+        }
+
+        .news-loading {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.9rem;
+            color: #666 !important;
+            text-align: center;
+            font-style: italic;
+            padding: 20px 0;
+        }
+
         .support-btn {
             position: fixed; bottom: 20px; right: 20px;
             display: inline-flex; align-items: center; gap: 8px;
@@ -449,6 +527,9 @@ layout: null
 
             .newsletter-btn { width: 100%; padding: 18px 24px; }
             .affiliate-btn { width: 100%; padding: 18px 24px; }
+
+            .news-item { flex-direction: column; gap: 4px; }
+            .news-source { min-width: auto; }
 
             footer { padding: 40px 5vw 30px 5vw; }
             .footer-links { flex-direction: column; gap: 4px; }
@@ -560,6 +641,7 @@ layout: null
             </p>
         </div>
     </section>
+
     <!-- NEWS FROM AROUND THE WEB -->
     <section class="news-section">
         <div class="news-inner">
@@ -569,6 +651,7 @@ layout: null
             </div>
         </div>
     </section>
+
     <footer>
         <div class="footer-inner">
             <a href="index.html" class="footer-logo">Verv</a>
@@ -609,6 +692,35 @@ layout: null
                 window.location.href = 'originals.html';
             }, 650); 
         });
+
+        // Fetch and render news
+        fetch('news.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('news-feed');
+                let items = [];
+                if (data && data.items && data.items.length > 0) {
+                    items = data.items;
+                } else if (Array.isArray(data) && data.length > 0) {
+                    data.forEach(feed => {
+                        if (feed.items) items = items.concat(feed.items);
+                    });
+                }
+
+                if (items.length > 0) {
+                    container.innerHTML = items.slice(0, 6).map(item => `
+                        <a href="${item.link}" target="_blank" rel="noopener" class="news-item">
+                            <span class="news-source">The Hindu</span>
+                            <span class="news-title">${item.title}</span>
+                        </a>
+                    `).join('');
+                } else {
+                    container.innerHTML = '<p class="news-loading">Check back soon for headlines.</p>';
+                }
+            })
+            .catch(() => {
+                document.getElementById('news-feed').innerHTML = '<p class="news-loading">Check back soon for headlines.</p>';
+            });
     </script>
 
 </body>
