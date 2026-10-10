@@ -1,0 +1,28 @@
+name: Fetch News from The Hindu
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Runs every 6 hours
+  workflow_dispatch: # Lets you run it manually to test
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-and-save:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch RSS and save to JSON
+        uses: llun/feeds@4.7.0
+        with:
+          feeds: '[{"url": "https://www.thehindu.com/feeder/default.rss"}]'
+          output-path: 'news.json'
+          max-items: 6
+
+      - name: Commit news.json
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto-update news from The Hindu"
+          file_pattern: news.json
