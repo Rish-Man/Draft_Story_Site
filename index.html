@@ -487,15 +487,13 @@ layout: null
                 <p class="personal-note">No gatekeeping here. Oh btw, I am also not a great writer. It's just something I do for passing time.</p>
             </div>
 
-            {% assign today_date = site.time | date: "%Y-%m-%d" %}
-            {% assign today_jokes = site.jokes | where: "date", today_date %}
+            {% assign latest_joke = site.jokes | sort: "date" | reverse | first %}
 
             <div class="joke-of-day">
                 <div class="joke-label">Joke of the Day</div>
-                {% if today_jokes.size > 0 %}
-                    {% assign today_joke = today_jokes | first %}
-                    <p class="joke-setup">{{ today_joke.setup }}</p>
-                    {% for p in today_joke.punchlines %}
+                {% if latest_joke %}
+                    <p class="joke-setup">{{ latest_joke.setup }}</p>
+                    {% for p in latest_joke.punchlines %}
                     <p class="joke-punchline">{{ p.line }}</p>
                     {% endfor %}
                 {% else %}
