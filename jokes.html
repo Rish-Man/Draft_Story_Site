@@ -107,11 +107,11 @@ layout: null
             font-size: clamp(1rem, 2.6vw, 1.15rem);
             font-weight: 600;
             color: #1a1815 !important;
+            margin-bottom: 6px;
         }
+        .joke .punchline:last-child { margin-bottom: 0; }
 
-        /* ============================================ */
-        /* AD BOX — small, clickable, ad-styled */
-        /* ============================================ */
+        /* AD BOX */
         .ad-box {
             display: block;
             margin: 45px 0;
@@ -299,7 +299,7 @@ layout: null
         <h1 class="page-heading">Jokes</h1>
         <p class="page-subtitle">Because laughing is underrated. New jokes added regularly.</p>
 
-                {% assign sorted_jokes = site.jokes | sort: "date" | reverse %}
+        {% assign sorted_jokes = site.jokes | sort: "date" | reverse %}
         {% for joke in sorted_jokes %}
         <div class="joke">
             <p class="setup">{{ joke.setup }}</p>
@@ -316,7 +316,6 @@ layout: null
         </div>
         {% endif %}
 
-        <!-- AD BOX -->
         <a href="https://fktr.in/aNbid1N" target="_blank" rel="noopener sponsored" class="ad-box">
             <span class="ad-tag">Sponsored</span>
             <div class="ad-row">
