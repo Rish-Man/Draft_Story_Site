@@ -17,8 +17,8 @@ content:
         type: string
         required: true
       - name: date
-        label: Date
-        type: date
+        label: Date (use format YYYY-MM-DD, e.g. 2026-10-10)
+        type: string
         required: true
       - name: teaser
         label: Short teaser (one line)
@@ -50,8 +50,8 @@ content:
             type: string
             required: true
       - name: date
-        label: Date
-        type: date
+        label: Date (use format YYYY-MM-DD, e.g. 2026-10-10)
+        type: string
         required: true
 
   - name: songs
@@ -79,6 +79,6 @@ content:
         type: rich-text
         required: true
       - name: date
-        label: Date
-        type: date
+        label: Date (use format YYYY-MM-DD, e.g. 2026-10-10)
+        type: string
         required: true
