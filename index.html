@@ -220,6 +220,23 @@ layout: null
         }
         .joke-of-day .joke-punchline:last-child { margin-bottom: 0; }
 
+        .joke-of-day .joke-submit {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: clamp(0.8rem, 2.2vw, 0.9rem);
+            color: #8a8a8a !important;
+            font-style: italic;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            line-height: 1.5;
+        }
+        .joke-of-day .joke-submit a {
+            color: #d1d1d1 !important;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: 600;
+        }
+
         .joke-of-day .joke-invite {
             font-family: 'Josefin Sans', sans-serif;
             font-size: clamp(0.95rem, 2.6vw, 1.2rem);
@@ -496,6 +513,9 @@ layout: null
                     {% for p in latest_joke.punchlines %}
                     <p class="joke-punchline">{{ p.line }}</p>
                     {% endfor %}
+                    <p class="joke-submit">
+                        Got a better one? DM <a href="https://instagram.com/verv.reads" target="_blank">@verv.reads</a> — I'll feature the best ones here.
+                    </p>
                 {% else %}
                     <p class="joke-invite">
                         Would you like to add one? DM me at 
