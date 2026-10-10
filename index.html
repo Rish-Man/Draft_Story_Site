@@ -489,7 +489,7 @@ layout: null
 
             {% assign today_date = site.time | date: "%Y-%m-%d" %}
             {% assign today_jokes = site.jokes | where: "date", today_date %}
-            
+
             <div class="joke-of-day">
                 <div class="joke-label">Joke of the Day</div>
                 {% if today_jokes.size > 0 %}
