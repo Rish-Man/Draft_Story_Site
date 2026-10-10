@@ -299,11 +299,13 @@ layout: null
         <h1 class="page-heading">Jokes</h1>
         <p class="page-subtitle">Because laughing is underrated. New jokes added regularly.</p>
 
-        {% assign sorted_jokes = site.jokes | sort: "date" | reverse %}
+                {% assign sorted_jokes = site.jokes | sort: "date" | reverse %}
         {% for joke in sorted_jokes %}
         <div class="joke">
             <p class="setup">{{ joke.setup }}</p>
-            <p class="punchline">{{ joke.punchline }}</p>
+            {% for p in joke.punchlines %}
+            <p class="punchline">{{ p.line }}</p>
+            {% endfor %}
         </div>
         {% endfor %}
 
